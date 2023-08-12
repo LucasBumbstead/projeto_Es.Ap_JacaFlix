@@ -1,32 +1,34 @@
+
 import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Movie from "./components/Movie";
 import Youtube from "react-youtube";
+import { FaSearch } from "react-icons/fa";
 
 function App() {
-  const MOVIE_API = "https://api.themoviedb.org/3/";
-  const SEARCH_API = MOVIE_API + "search/movie";
-  const DISCOVER_API = MOVIE_API + "discover/movie";
-  const API_KEY = "fca20a8a62aeb9dec3aca16c54e9a58f";
-  const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280";
+    const MOVIE_API = "https://api.themoviedb.org/3/";
+    const SEARCH_API = MOVIE_API + "search/movie";
+    const DISCOVER_API = MOVIE_API + "discover/movie";
+    const API_KEY = "fca20a8a62aeb9dec3aca16c54e9a58f";
+    const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280";
 
-  const [playing, setPlaying] = useState(false);
-  const [trailer, setTrailer] = useState(null);
-  const [movies, setMovies] = useState([]);
-  const [searchKey, setSearchKey] = useState("");
-  const [movie, setMovie] = useState({ title: "Loading Movies" });
+    const [playing, setPlaying] = useState(false);
+    const [trailer, setTrailer] = useState(null);
+    const [movies, setMovies] = useState([]);
+    const [searchKey, setSearchKey] = useState("");
+    const [movie, setMovie] = useState({ title: "Loading Movies" });
 
-  useEffect(() => {
-    fetchMovies();
-  }, []);
+    useEffect(() => {
+        fetchMovies();
+    }, []);
 
     const fetchMovies = async (event) => {
         if (event) {
             event.preventDefault()
         }
 
-        const {data} = await axios.get(`${searchKey ? SEARCH_API : DISCOVER_API}`, {
+        const { data } = await axios.get(`${searchKey ? SEARCH_API : DISCOVER_API}`, {
             params: {
                 api_key: API_KEY,
                 query: searchKey
@@ -43,7 +45,7 @@ function App() {
     }
 
     const fetchMovie = async (id) => {
-        const {data} = await axios.get(`${MOVIE_API}movie/${id}`, {
+        const { data } = await axios.get(`${MOVIE_API}movie/${id}`, {
             params: {
                 api_key: API_KEY,
                 append_to_response: "videos"
@@ -78,19 +80,18 @@ function App() {
 
     return (
         <div className="App">
-            <header className="center-max-size header">
-                <img className="logo" src="./assets/logo.png" alt="Logo Jaca Flix!"  />
-                <form className="form" onSubmit={fetchMovies}>
-                    <input className="search" type="text" id="search"
-                           onInput={(event) => setSearchKey(event.target.value)}/>
-                    <button className="submit-search" type="submit"><i className="fa fa-search"></i></button>
-                </form>
-            </header>
+        <header className="center-max-size header">
+            <img className="logo" src="./assets/logo.png" alt="Logo Jaca Flix!" />
+            <form className="form" onSubmit={fetchMovies}>
+                <input className="search" type="text" id="search" onInput={(event) => setSearchKey(event.target.value)} />
+                <button className="submit-search" type="submit"><FaSearch /></button>
+            </form>
+        </header>
             {movies.length ?
                 <main>
                     {movie ?
                         <div className="poster"
-                             style={{backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${BACKDROP_PATH}${movie.backdrop_path})`}}>
+                            style={{ backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${BACKDROP_PATH}${movie.backdrop_path})` }}>
                             {playing ?
                                 <>
                                     <Youtube
@@ -99,13 +100,13 @@ function App() {
                                         containerClassName={"youtube-container amru"}
                                         opts={
                                             {
-                                                width: '100%',
-                                                height: '100%',
+                                                width: '1000px',
+                                                height: '500px',
                                                 playerVars: {
                                                     autoplay: 1,
-                                                    controls: 0,
+                                                    controls: 1,
                                                     cc_load_policy: 0,
-                                                    fs: 0,
+                                                    fs: 1,
                                                     iv_load_policy: 0,
                                                     modestbranding: 0,
                                                     rel: 0,
@@ -120,10 +121,15 @@ function App() {
                                 <div className="center-max-size">
                                     <div className="poster-content">
                                         {trailer ?
-                                            <button className={"button play-video"} onClick={() => setPlaying(true)}
-                                                    type="button">Play
-                                                Trailer</button>
-                                            : 'Sorry, no trailer available'}
+                                            <div>
+                                            <button className={"button play-video"} onClick={() => setPlaying(true)} type="button">Play Trailer</button>
+                                            <button className={"button play-video"} onClick={() => alert("Play Filme")} type="button">Play Filme</button>
+                                          </div>
+                                          :
+                                          <div>
+                                          <button className="button play-video" onClick={() => alert("Play Filme")} type="button">Play Filme</button>
+                                      </div>
+                                  }
                                         <h1>{movie.title}</h1>
                                         <p>{movie.overview}</p>
                                     </div>
