@@ -59,6 +59,9 @@ function App() {
 
         setMovie(data)
     }
+    const handleLogoClick = () => {
+        window.location.reload();
+    };
 
 
     const selectMovie = (movie) => {
@@ -81,7 +84,7 @@ function App() {
     return (
         <div className="App">
         <header className="center-max-size header">
-            <img className="logo" src="./assets/logo.png" alt="Logo Jaca Flix!"/>
+            <img className="logo" src="./assets/logo.png" alt="Logo Jaca Flix!" onClick={handleLogoClick}/>
             <form className="form" onSubmit={fetchMovies}>
                 <input className="search" type="text" id="search" onInput={(event) => setSearchKey(event.target.value)} />
                 <button className="submit-search" type="submit"><FaSearch /></button>
