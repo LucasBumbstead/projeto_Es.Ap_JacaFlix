@@ -9,11 +9,11 @@ import { FaSearch } from "react-icons/fa";
 function App() {
     const MOVIE_API = "https://api.themoviedb.org/3/";
     const SEARCH_API = MOVIE_API + "search/movie";
-    const DISCOVER_API = MOVIE_API + "discover/movie";
+    const DISCOVER_API = MOVIE_API + "discover/movie/?language=pt-BR";
     const API_KEY = "fca20a8a62aeb9dec3aca16c54e9a58f";
     const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280";
 
-    const [playing, setPlaying] = useState(false);
+    const [playing, setPlaying] = useState(false); 
     const [trailer, setTrailer] = useState(null);
     const [movies, setMovies] = useState([]);
     const [searchKey, setSearchKey] = useState("");
@@ -45,7 +45,7 @@ function App() {
     }
 
     const fetchMovie = async (id) => {
-        const { data } = await axios.get(`${MOVIE_API}movie/${id}`, {
+        const { data } = await axios.get(`${MOVIE_API}movie/${id}?language=pt-BR`, {
             params: {
                 api_key: API_KEY,
                 append_to_response: "videos"
@@ -81,7 +81,7 @@ function App() {
     return (
         <div className="App">
         <header className="center-max-size header">
-            <img className="logo" src="./assets/logo.png" alt="Logo Jaca Flix!" />
+            <img className="logo" src="./assets/logo.png" alt="Logo Jaca Flix!"/>
             <form className="form" onSubmit={fetchMovies}>
                 <input className="search" type="text" id="search" onInput={(event) => setSearchKey(event.target.value)} />
                 <button className="submit-search" type="submit"><FaSearch /></button>
@@ -115,19 +115,19 @@ function App() {
                                             }
                                         }
                                     />
-                                    <button onClick={() => setPlaying(false)} className={"button close-video"}>Close
+                                    <button onClick={() => setPlaying(false)} className={"button close-video"}>Fechar
                                     </button>
                                 </> :
                                 <div className="center-max-size">
                                     <div className="poster-content">
                                         {trailer ?
                                             <div>
-                                            <button className={"button play-video"} onClick={() => setPlaying(true)} type="button">Play Trailer</button>
-                                            <button className={"button play-video"} onClick={() => alert("Play Filme")} type="button">Play Filme</button>
+                                            <button className={"button play-video"} onClick={() => alert("Play Filme")} type="button">Assisitr Filme</button>
+                                            <button className={"button play-video"} onClick={() => setPlaying(true)} type="button">Trailer</button>
                                           </div>
                                           :
                                           <div>
-                                          <button className="button play-video" onClick={() => alert("Play Filme")} type="button">Play Filme</button>
+                                          <button className="button play-video" onClick={() => alert("Play Filme")} type="button">Assistir Filme</button>
                                       </div>
                                   }
                                         <h1>{movie.title}</h1>
@@ -142,7 +142,7 @@ function App() {
                         {renderMovies()}
                     </div>
                 </main>
-                : 'Sorry, no movies found'}
+                : 'Nenhum filme encontrado'}
         </div>
     );
 }
