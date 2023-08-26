@@ -81,6 +81,15 @@ function App() {
         ))
     )
 
+    const handleAssistirFilmeClick = () => {
+        if (movie.title === "Homem-Aranha: Através do Aranhaverso") {
+            window.open("https://filemoon.sx/d/ni5usyxrx4xf", "_blank");
+        } else {
+            // TODO:
+            // Implementar a Lógica do ELSE
+        }
+    };
+
     return (
         <div className="App">
         <header className="center-max-size header">
@@ -125,12 +134,15 @@ function App() {
                                     <div className="poster-content">
                                         {trailer ?
                                             <div>
-                                            <button className={"button play-video"} onClick={() => alert("Play Filme")} type="button">Assisitr Filme</button>
+                                            <button className={"button play-video"} onClick={handleAssistirFilmeClick} type="button">Assistir Filme</button>
                                             <button className={"button play-video"} onClick={() => setPlaying(true)} type="button">Trailer</button>
                                           </div>
                                           :
                                           <div>
-                                          <button className="button play-video" onClick={() => alert("Play Filme")} type="button">Assistir Filme</button>
+                                          <button 
+                                                className="button play-video" 
+                                                onClick={handleAssistirFilmeClick}
+                                                type="button">Assistir Filme</button>
                                       </div>
                                   }
                                         <h1>{movie.title}</h1>
