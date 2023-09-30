@@ -50,6 +50,8 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 30px;
+  text-align: center;
+  align-items: center;
 }
 
   .button {
@@ -157,3 +159,22 @@ h1 {
     margin-right: 10px; /* Espaço entre logo e formulário */
     cursor: pointer; /* Adicionado cursor para indicar que é clicável */
   }
+  /* Adicione o seguinte estilo ao título h2 */
+  .title {
+    text-align: center; /* Centraliza horizontalmente */
+    line-height: 15vh; /* Centraliza verticalmente */
+}
+
+/* Estilos para o ícone à esquerda */
+.jaca-icon-left {
+  width: 24px; /* Ajuste o tamanho conforme necessário */
+  height: auto;
+  margin-right: 5px; /* Espaço entre o ícone e o texto do título */
+}
+
+/* Estilos para o ícone à direita */
+.jaca-icon-right {
+  width: 24px; /* Ajuste o tamanho conforme necessário */
+  height: auto;
+  margin-left: 5px; /* Espaço entre o texto do título e o ícone */
+}
