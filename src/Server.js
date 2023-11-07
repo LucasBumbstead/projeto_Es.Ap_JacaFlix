@@ -1,14 +1,10 @@
-const express = require('express');
-const path = require('path');
+const http = require('http');
+const app = require('./app');
 
-const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
+const server = http.createServer(app)
 
-// Servir arquivos estáticos a partir da pasta de compilação
-app.use(express.static(path.join(__dirname, 'build')));
-
-// Configurar uma rota para lidar com todas as solicitações
 
 app.listen(port, () => {
-  console.log(`Servidor está ouvindo na porta ${port}`);
+  console.log(`Started on port ${port}`);
 });
