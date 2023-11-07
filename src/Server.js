@@ -5,6 +5,11 @@ const PORT = 3000;
 
 app.use(express.json());
 
+// Rota para a raiz (rota raiz)
+app.get('/', (req, res) => {
+  res.send('Bem-vindo à minha aplicação!');
+});
+
 app.get('/api/movies', async (req, res) => {
   try {
     const response = await axios.get('https://api.themoviedb.org/3/your-endpoint', {
