@@ -5,9 +5,9 @@ const PORT = 3000;
 
 app.use(express.json());
 
-// Rota para a raiz (rota raiz)
-app.get('/', (req, res) => {
-  res.send('Bem-vindo à minha aplicação!');
+// Rota para o filme
+app.get('/filme', (req, res) => {
+  res.redirect('/filmes');
 });
 
 app.get('/api/movies', async (req, res) => {
