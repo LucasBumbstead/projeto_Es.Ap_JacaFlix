@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './App.css';
+import ReactDOM from 'react-dom'; // Importe ReactDOM
 import axios from 'axios';
 import Movie from './components/Movie';
 import { FaSearch } from 'react-icons/fa';
@@ -265,5 +266,7 @@ function App() {
     </div>
   );
 }
+
+ReactDOM.render(<App />, document.getElementById('root')); // Renderize o componente App no elemento com o id "root"
 
 export default App;
