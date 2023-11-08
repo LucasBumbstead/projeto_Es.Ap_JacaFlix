@@ -6,7 +6,7 @@ const PORT = 3000;
 console.log('__dirname:', __dirname);
 
 // Defina a pasta "public" como pasta de arquivos estáticos
-app.use(express.static(path.join(__dirname, 'public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Rota para servir a página principal
 app.get('/', (req, res) => {
