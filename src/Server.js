@@ -1,27 +1,18 @@
 const express = require('express');
-const axios = require('axios');
+const path = require('path');
+
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT || 3000; // Porta em que o servidor irá rodar
 
-app.use(express.json());
+// Defina a pasta "build" como pasta de arquivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Rota para o filme
-app.get('/filme', (req, res) => {
-  res.redirect('/filmes');
+// Rota para servir a página principal
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/api/movies', async (req, res) => {
-  try {
-    const response = await axios.get('https://api.themoviedb.org/3/your-endpoint', {
-      params: req.query,
-    });
-    res.json(response.data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error');
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Proxy server is running on port ${PORT}`);
+// Inicie o servidor na porta especificada
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });
